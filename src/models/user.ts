@@ -48,7 +48,7 @@ user.methods.addToCart = function(tube: any) {
 
 user.methods.removeFromCart = function(id: number) {
   const items = [...this.cart.items]
-  const idx = items.findIndex(c => {
+  const idx = items.findIndex(t => {
     return t.tubeId.toString() === id.toString()
   })
 
