@@ -17,9 +17,9 @@ const user = new Schema({
           required: true,
           default: 1
         },
-        tubeId: {
+        productId: {
           type: Schema.Types.ObjectId,
-          ref: 'Tube',
+          ref: 'Product',
           required: true,
         }
       }
@@ -27,17 +27,17 @@ const user = new Schema({
   }
 })
 
-user.methods.addToCart = function(tube: any) {
+user.methods.addToCart = function(product) {
   let items = [...this.cart.items]
   const idx = items.findIndex((t) => {
-    return t.tubeId.toString() === tube._id.toString()
+    return t.productId.toString() === product._id.toString()
   })
 
   if (idx >= 0) {
     items[idx].count = items[idx].count + 1
   } else {
     items.push({
-      courseId: tube._id,
+      courseId: product._id,
       count: 1
     })
   }
@@ -46,15 +46,15 @@ user.methods.addToCart = function(tube: any) {
   return this.save()
 }
 
-user.methods.removeFromCart = function(id: number) {
-  const items = [...this.cart.items]
+user.methods.removeFromCart = function(id) {
+  let items = [...this.cart.items]
   const idx = items.findIndex(t => {
-    return t.tubeId.toString() === id.toString()
+    return t.productId.toString() === id.toString()
   })
 
   if (items[idx].count === 1) {
     items.splice(idx, 1);
-    // items = items.filter(c => c.courseId.toString() === id.toString())
+    items = items.filter(c => c.courseId.toString() === id.toString())
   } else {
     items[idx].count--
   }

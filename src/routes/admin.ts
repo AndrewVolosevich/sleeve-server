@@ -1,3 +1,6 @@
+require('../models/product')
+require('../models/user')
+require('../models/order')
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('@admin-bro/express')
 const AdminBroMongoose = require('@admin-bro/mongoose')

@@ -9,13 +9,11 @@ const cors = require('cors')
 const PORT = config.get('port') || 5555
 const app: express.Application = express()
 
+app.use('/admin', adminRoutes)
 app.options('*', cors());
 app.use(cors());
-
 app.use(bodyParser.json())
-
 app.use('/api/auth', authRoutes)
-app.use('/admin', adminRoutes)
 
 app.get('/', async(req, res) => {
   res.end('hello w')
