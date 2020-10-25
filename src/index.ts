@@ -1,24 +1,21 @@
-import express = require('express');
+import express = require('express')
 const bodyParser = require('body-parser')
 const config = require('config')
 const mongoose = require('mongoose')
 const authRoutes = require('./routes/auth')
+const adminRoutes = require('./routes/admin')
 const cors = require('cors')
 
 const PORT = config.get('port') || 5555
-const app: express.Application = express();
+const app: express.Application = express()
 
+app.options('*', cors());
+app.use(cors());
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
-// parse application/json
 app.use(bodyParser.json())
 
-app.use(cors());
-app.options('*', cors());
-
-
 app.use('/api/auth', authRoutes)
+app.use('/admin', adminRoutes)
 
 app.get('/', async(req, res) => {
   res.end('hello w')

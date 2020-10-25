@@ -1,4 +1,5 @@
 {
   "port": 5555,
-  "mongoURL": "mongodb+srv://volosevichFE:pUA9qPqEsHevyipE@cluster0.cuyoa.mongodb.net/tube?retryWrites=true&w=majority"
+  "mongoURL": "mongodb+srv://volosevichFE:pUA9qPqEsHevyipE@cluster0.cuyoa.mongodb.net/tube?retryWrites=true&w=majority",
+  "jwtSecret": "regata.by"
 }
